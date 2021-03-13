@@ -1,4 +1,4 @@
-# Knapsack Object Oriented Approach with GUI using Java
+# GUI Knapsack Problem using Object Oriented Paradigm in Java
 A knapsack algorithm that is developed in Java using the Object-Oriented Paradigm. This algorithm can be run using Bruteforce and Dynamic Programming solution.
 
 ![knapsack2](https://user-images.githubusercontent.com/37321974/111015557-5e37e380-8377-11eb-94ec-d4ba1d495f9e.PNG)
