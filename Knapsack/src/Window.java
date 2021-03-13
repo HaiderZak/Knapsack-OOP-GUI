@@ -23,7 +23,7 @@ public class Window extends JFrame implements MouseListener {
 
     public Window() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setExtendedState(MAXIMIZED_BOTH);
+        this.setSize(800,800);
         JPanel panel = new JPanel(new BorderLayout());
         JPanel paneltwo = new JPanel();
         paneltwo.setLayout(new GridLayout(6, 2));
@@ -52,7 +52,7 @@ public class Window extends JFrame implements MouseListener {
         panel.add(paneltwo, BorderLayout.WEST);
         paneltwo.setBackground(Color.LIGHT_GRAY);
         panelthree.setBackground(Color.LIGHT_GRAY);
-        panel.setBackground(Color.GRAY);
+        panel.setBackground(Color.LIGHT_GRAY);
 
         paneltwo.add(numItemsLabel);
         paneltwo.add(L1);
