@@ -14,7 +14,7 @@ public class Window extends JFrame implements MouseListener {
     JTextField maxWeightLabel = new JTextField();
     JTextField valuesLabel = new JTextField();
     JTextField weightsLabel = new JTextField();
-    JTextField txt = new JTextField("Result: ");
+    JTextField txt = new JTextField("Optimal Value: ");
     JTextField elapsedTime = new JTextField("Elapsed Time: ");
     ButtonGroup bg;
     JCheckBox chkbox1, chkbox2;
@@ -68,6 +68,23 @@ public class Window extends JFrame implements MouseListener {
         panelthree.add(txt);
         panelthree.add(elapsedTime);
         paneltwo.add(panelthree);
+        
+        ActionListener al = new ActionListener(){ 
+        	@Override
+        	public void actionPerformed(ActionEvent e){  
+	                if (chkbox1.isSelected()) {  
+	                    KnapsackProblem kp = new KnapsackProblem();
+        	            txt.setText("Optimal Value: " + kp.bruteForceSol());
+        	            elapsedTime.setText("Elapsed Time: " + kp.getRunTime()/1000000 + " ms");
+	                }
+	                if (chkbox2.isSelected()) {  
+	                    KnapsackProblem kp = new KnapsackProblem();
+        	            txt.setText("Optimal Value: " + kp.dynamicProgrammingSol());
+        	            elapsedTime.setText("Elapsed Time: " + kp.getRunTime()/1000000 + " ms");
+	                }
+        		}  
+        };
+        start.addActionListener(al);
 
         this.setResizable(true);
         this.setVisible(true);
@@ -75,33 +92,11 @@ public class Window extends JFrame implements MouseListener {
     }
 
     public static void main(String[] args) {
+    	
         new KnapsackProblem();
+        
     }
 
-    public void paint(Graphics d) {
-        d.setColor(Color.red);        //default color for drawing
-        super.paint(d);
-        
-        start.addActionListener(new ActionListener(){  
-        	public void actionPerformed(ActionEvent e){  
-	                if (chkbox1.isSelected()) {  
-	                    KnapsackProblem kp = new KnapsackProblem();
-        	            txt.setText("Result: " + kp.bruteForceSol());
-        	            elapsedTime.setText("Elapsed Time: " + kp.getRunTime()/1000000 + " ms");
-	                }
-	                if (chkbox2.isSelected()) {  
-	                    KnapsackProblem kp = new KnapsackProblem();
-        	            txt.setText("Result: " + kp.dynamicProgrammingSol());
-        	            elapsedTime.setText("Elapsed Time: " + kp.getRunTime()/1000000 + " ms");
-	                }
-        		}  
-         });  
-
-        Graphics2D d2 = (Graphics2D) d;
-        
-
-        this.setVisible(true);
-    }
     @Override
     public void mouseClicked(MouseEvent e) {
 
