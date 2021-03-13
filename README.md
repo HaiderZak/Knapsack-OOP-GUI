@@ -1,4 +1,4 @@
-# Knapsack-OOP-GUI
+# Knapsack Object Oriented Approach with GUI using Java
 A knapsack algorithm that is developed in Java using the Object-Oriented Paradigm. This algorithm can be run using Bruteforce and Dynamic Programming solution.
 
 Using Terminal:
