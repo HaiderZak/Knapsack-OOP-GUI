@@ -8,6 +8,8 @@ javac *.java
 
 java KnapsackProblem.java
 
+![knapsackTest](https://user-images.githubusercontent.com/37321974/111015474-eec1f400-8376-11eb-8bf8-e40c9acb54b0.PNG)
+
 Using git:
 
 git clone https://github.com/HaiderZak/Knapsack-OOP-GUI
