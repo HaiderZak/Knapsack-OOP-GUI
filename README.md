@@ -5,10 +5,12 @@ Using Terminal:
 
 cd Knapsack/src
 javac *.java
+
 java KnapsackProblem.java
 
 Using git:
 
 git clone https://github.com/HaiderZak/Knapsack-OOP-GUI
+
 run KnapsackProblem.java
 
