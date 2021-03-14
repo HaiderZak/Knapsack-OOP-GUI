@@ -28,17 +28,24 @@ public class KnapsackProblem {
 	}
 
 	public String bruteForceSol() {
-		maxWeight = Integer.parseInt(w.maxWeightLabel.getText());
-		numItems = Integer.parseInt(w.numItemsLabel.getText());
-		int[] values = new int[numItems];
-		int[] weights = new int[numItems];
-		for(int i=0; i<numItems; i++) {
-			String[] newElementV = w.valuesLabel.getText().split(" ");
-			String[] newElementW = w.weightsLabel.getText().split(" ");
-			values[i] = Integer.parseInt(newElementV[i]);
-			weights[i] = Integer.parseInt(newElementW[i]);
+		try {
+			maxWeight = Integer.parseInt(w.maxWeightLabel.getText());
+			numItems = Integer.parseInt(w.numItemsLabel.getText());
+			int[] values = new int[numItems];
+			int[] weights = new int[numItems];
+			for(int i=0; i<numItems; i++) {
+				String[] newElementV = w.valuesLabel.getText().split(" ");
+				String[] newElementW = w.weightsLabel.getText().split(" ");
+				values[i] = Integer.parseInt(newElementV[i]);
+				weights[i] = Integer.parseInt(newElementW[i]);
+			}
+			return this.knapsackRecursive(values, weights, maxWeight, 0) + "";
 		}
-		return this.knapsackRecursive(values, weights, maxWeight, 0) + "";
+		catch(Exception e) {
+			startTime = 0;
+			endTime = 0;
+			return "Error!";
+		}
 	}
 
 	public int knapsackRecursive(int[] profits, int[] weights, int capacity, int currentIndex) {
@@ -60,40 +67,47 @@ public class KnapsackProblem {
 	}
 	
 	public String dynamicProgrammingSol() {
-		startTime = System.nanoTime();
+		try {
+			startTime = System.nanoTime();
 
-		maxWeight = Integer.parseInt(w.maxWeightLabel.getText());
-		numItems = Integer.parseInt(w.numItemsLabel.getText());
+			maxWeight = Integer.parseInt(w.maxWeightLabel.getText());
+			numItems = Integer.parseInt(w.numItemsLabel.getText());
 
-		int[] values = new int[numItems];
-		int[] weights = new int[numItems];
-		for(int i=0; i<numItems; i++) {
-			String[] newElementV = w.valuesLabel.getText().split(" ");
-			String[] newElementW = w.weightsLabel.getText().split(" ");
-			values[i] = Integer.parseInt(newElementV[i]);
-			weights[i] = Integer.parseInt(newElementW[i]);
-		}
+			int[] values = new int[numItems];
+			int[] weights = new int[numItems];
+			for(int i=0; i<numItems; i++) {
+				String[] newElementV = w.valuesLabel.getText().split(" ");
+				String[] newElementW = w.weightsLabel.getText().split(" ");
+				values[i] = Integer.parseInt(newElementV[i]);
+				weights[i] = Integer.parseInt(newElementW[i]);
+			}
 
-		int[][] M = new int[numItems + 1][maxWeight + 1];
+			int[][] M = new int[numItems + 1][maxWeight + 1];
 
-		//Dynamic Programming Knapsack Implementation (Modified): https://www.baeldung.com/java-knapsack
-		for(int i=1; i<numItems + 1; i++) {
-			for(int j=1; j<maxWeight + 1; j++) {
-				if(weights[i-1] > j) {
-					M[i][j] = M[i-1][j];
-				}
-				else {
-					if(M[i-1][j] > M[i-1][j-weights[i-1]] + values[i-1]) {
+			//Dynamic Programming Knapsack Implementation (Modified): https://www.baeldung.com/java-knapsack
+			for(int i=1; i<numItems + 1; i++) {
+				for(int j=1; j<maxWeight + 1; j++) {
+					if(weights[i-1] > j) {
 						M[i][j] = M[i-1][j];
 					}
 					else {
-						M[i][j] = M[i-1][j-weights[i-1]] + values[i-1];
+						if(M[i-1][j] > M[i-1][j-weights[i-1]] + values[i-1]) {
+							M[i][j] = M[i-1][j];
+						}
+						else {
+							M[i][j] = M[i-1][j-weights[i-1]] + values[i-1];
+						}
 					}
 				}
 			}
-		}
-		endTime = System.nanoTime();
+			endTime = System.nanoTime();
 
-		return M[numItems][maxWeight] + "";
+			return M[numItems][maxWeight] + "";			
+		}
+		catch(Exception e) {
+			startTime = 0;
+			endTime = 0;
+			return "Error!";
+		}
 	}
 }
